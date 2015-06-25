@@ -28,6 +28,7 @@ public class Owk {
 
     public void processCommand(String input) {
         if(input == null || input.isEmpty()) return;
+        input = input.replaceAll("\\s+");
         if(input.contains(";") {
             for(String s : input.split(";"))
                 processCommand(s);
