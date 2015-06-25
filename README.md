@@ -24,8 +24,10 @@ You can also do your normal math operations in Owk using the registers.
 ```python
 #Adds the values of registers a & f and stores it in register e
 a+f>e
-#Multiplies 2 & d and stores it in f
+#Multiplies the values of registers 2 & d and stores it in register f
 2*d>f
-#Mods 8 & 6 and stores it in 1
+#Mods the values of registers 8 & 6 and stores it in register 1
 8 % 6 > 1
 ```
+
+The available functions are add `+`, subtract `-`, multiply `*`, divide `/`, mod `%`, AND `&`, OR `|`, XOR `^`, left shift `{`, and right shift `}`.
