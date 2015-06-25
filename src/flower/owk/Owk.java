@@ -28,14 +28,18 @@ public class Owk {
 
     public void processCommand(String input) {
         if(input == null || input.isEmpty()) return;
-        if(input.contains("|") {
-            for(String s : input.split("|"))
+        if(input.contains(";") {
+            for(String s : input.split(";"))
                 processCommand(s);
             return;
         }
         //Command Checks
         try {
-            if(input.matches("[0-9a-fA-F]=([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])")) {
+            if(input.startsWith("#") {
+                //Comment
+                return;
+            }
+            else if(input.matches("[0-9a-fA-F]=([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])")) {
                 //Load  a=7 loads 7 to register a (up to 255)
                 String reg = input.split("=")[0]
                 String num = Integer.toHexString(Integer.parseInt(input.split("=")[1]));
