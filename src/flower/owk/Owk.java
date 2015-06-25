@@ -1,11 +1,24 @@
 package flower.owk;
 
 import java.io.*;
+import java.util.*;
 
 public class Owk {
 
     public String file = "console.owk";
     private PrintWriter writer = new PrintWriter(file, "UTF-8");
+    public HashMap<String, String> mathOperators = new HashMap<String, String>(){{
+        put("+", "04");
+        put("-", "05");
+        put("*", "06");
+        put("/", "07");
+        put("%", "08");
+        put("&", "09");
+        put("|", "0A");
+        put("^", "0B");
+        put("}", "0D");
+        put("{", "0E");
+    }};
 
     public static void main(String[] args) {
         Owk owk = new Owk();
@@ -48,11 +61,12 @@ public class Owk {
                 String num = Integer.toHexString(Integer.parseInt(input.split("=")[1]));
                 writeBytecode("01" + reg + num + "0");
             }
-            else if(input.matches("[0-9a-fA-F]+[0-9a-fA-F]>[0-9a-fA-F]")) {
+            else if(input.matches("[0-9a-fA-F][+|-|*|/|%|&|\\||^|}|{][0-9a-fA-F]>[0-9a-fA-F]")) {
                 String reg1 = input.split(">")[0].split("+")[0];
                 String reg2 = input.split(">")[0].split("+")[1];
                 String reg3 = input.split(">")[1];
-                writeBytecode("04" + reg1 + reg2 + reg3 + "0");
+                String func = input.split(reg2)[0].split(reg1)[1];
+                writeBytecode(mathOperators.get(func) + reg1 + reg2 + reg3 + "0");
             }
         } catch (Exception e) {
             e.printStackTrace();
