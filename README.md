@@ -1,5 +1,5 @@
-# owk
-Owk is a compiled, esoteric, golfing, register-based, programming language that runs on the FVM. It is compiled into FVM bytecode, which can be put through the FVM for results.
+# Owk
+Owk is a compiled, esoteric, golfing, register-based programming language that runs on the FVM. It is compiled into FVM bytecode, which can be put through the FVM for results.
 
 Owk is parsed line by line. You can make a "fake" line by putting a `;`. Comments start with `#` and are only at the start of a line, whitespace is ignored.
 
@@ -31,3 +31,12 @@ a+f>e
 ```
 
 The available functions are add `+`, subtract `-`, multiply `*`, divide `/`, mod `%`, AND `&`, OR `|`, XOR `^`, left shift `{`, and right shift `}`.
+
+Since Owk is parsed line by line, you can use the `g` operator to go to a specific line.
+
+```python
+#Infinite Loop
+f=8;e=6;
+f*e>f;g1
+#The number after g is written in hex
+```
