@@ -5,11 +5,13 @@ import java.io.*;
 public class Owk {
 
     public String file = "console.owk";
+    private PrintWriter writer = new PrintWriter(file, "UTF-8");
 
     public static void main(String[] args) {
         Owk owk = new Owk();
         if(args.length > 0) {
             owk.file = args[0];
+            owk.writer = new PrintWriter(owk.file, "UTF-8");
             File file = new File(args[0]);
             BufferedReader br = new BufferedReader(new FileReader(file));
             try {
@@ -58,6 +60,6 @@ public class Owk {
     }
 
     public void writeBytecode(String output) {
-        //TODO: Write bytecode to file
+        writer.println(output);
     }
 }
