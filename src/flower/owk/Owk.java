@@ -43,7 +43,13 @@ public class Owk {
                 //Load  a=7 loads 7 to register a (up to 255)
                 String reg = input.split("=")[0]
                 String num = Integer.toHexString(Integer.parseInt(input.split("=")[1]));
-                writeBytecode("01" + reg + num);
+                writeBytecode("01" + reg + num + "0");
+            }
+            else if(input.matches("[0-9a-fA-F]+[0-9a-fA-F]>[0-9a-fA-F]")) {
+                String reg1 = input.split(">")[0].split("+")[0];
+                String reg2 = input.split(">")[0].split("+")[1];
+                String reg3 = input.split(">")[1];
+                writeBytecode("04" + reg1 + reg2 + reg3 + "0");
             }
         } catch (Exception e) {
             e.printStackTrace();
