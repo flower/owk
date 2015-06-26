@@ -19,20 +19,31 @@ f=8
 F=8
 ```
 
+To load characters, you use `''`. This will load the ASCII value of the character, though it can't be over **`255`**.
+
+```python
+1='H'
+2='e'
+3='l'
+4='l'
+```
+
 You can also do your normal math operations in Owk using the registers.
 
 ```python
 #Adds the values of registers a & f and stores it in register e
-e=a+f
+e<a+f
 #Multiplies the values of registers 2 & d and stores it in register f
-f=2*d
+f<2*d
 #Mods the values of registers 8 & 6 and stores it in register 1
-1 = 8 % 6
+1 < 8 % 6
+#Transfers the value of register e into register f
+f<e
 ```
 
 The available functions are add `+`, subtract `-`, multiply `*`, divide `/`, mod `%`, AND `&`, OR `|`, XOR `^`, left shift `<`, and right shift `>`.
 
-You can also do math expressions if you wrap it around `()`. It gets parsed by a JavaScript engine, so you can use things like `Math.pow()`. The answer of the expression can't be over **`255`**, so be careful!
+Expressions are done by wrapping it around `()`. It gets parsed by a JavaScript engine, so you can use things like `Math.pow()`. The answer of the expression can't be over **`255`**, so be careful!
 
 ```python
 f=(2*3+4)
@@ -63,11 +74,11 @@ You can also negate registers.
 
 ```python
 #Negative c
-f=-c
+f<-c
 #NOT c
-e=!c
+e<!c
 #Two's complement c
-d=~c
+d<~c
 ```
 
 ##Lambdas
