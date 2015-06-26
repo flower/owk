@@ -19,20 +19,12 @@ f=8
 F=8
 ```
 
-To load characters, you use `''`. This will load the ASCII value of the character, though it can't be over **`255`**.
+To load characters, you use `''`. This will load the ASCII value of the character, though it can't be over **`255`**. Printing is done with `p`.
 
 ```python
-1='H'
-2='e'
-3='l'
-4='l'
-5='o'
-6=' '
-7='W'
-8='o'
-9='r'
-a='l'
-b='d'
+1='H';2='e';3='l';4='l';5='o';6=' '
+7='W';8='o';9='r';a='l';b='d'
+p1;p2;p3;p4;p5;p6;p7;p8;p9;pa;pb;
 ```
 
 You can also do your normal math operations in Owk using the registers.
