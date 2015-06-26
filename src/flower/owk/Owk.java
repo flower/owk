@@ -2,10 +2,12 @@ package flower.owk;
 
 import java.io.*;
 import java.util.*;
+import javax.script.*;
 
 public class Owk {
 
     public String file = "console.owk";
+    public ScriptEngine engine;
     private PrintWriter writer = new PrintWriter(file, "UTF-8");
     public HashMap<String, String> mathOperators = new HashMap<String, String>(){{
         put("+", "04");
@@ -24,7 +26,11 @@ public class Owk {
     }};
 
     public static void main(String[] args) {
+        ScriptEngineManager mgr = new ScriptEngineManager();
+        ScriptEngine engine = mgr.getEngineByName("JavaScript");
         Owk owk = new Owk();
+        owk.engine = engine;
+
         if(args.length > 0) {
             owk.file = args[0];
             owk.writer = new PrintWriter(owk.file, "UTF-8");
@@ -61,15 +67,30 @@ public class Owk {
             else if(input.contains("#") {
                 input = input.split("#")[0];
             }
-            else if(input.matches("[0-9a-fA-F]=([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])")) {
-                //Load  a=7 loads 7 to register a (up to 255)
+            else if(input.matches("[0-9a-fA-F]=\\([0-9()+\-*/.]+\\)")) {
                 String reg = input.split("=")[0]
+                String ex = input.split("=")[1];
+                int ans = (int) Math.floor(engine.eval(ex));
+                if(Math.abs(ans) > 255) {
+                    throw new IllegalArgumentException();
+                    return;
+                }
+                if(ans > 0) {
+                    String num = Integer.toHexString(ans);
+                    writeBytecode("01" + reg + num + "0");
+                } else {
+                    String num = Integer.toHexString(Math.abs(ans));
+                    writeBytecode("01" + reg + num + "0");
+                    writeBytecode(mathOperators.get("-") + reg + reg + "00");
+                }
+            }
+            else if(input.matches("[0-9a-fA-F]=([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])")) {
+                String reg input.split("=")[0];
                 String num = Integer.toHexString(Integer.parseInt(input.split("=")[1]));
                 writeBytecode("01" + reg + num + "0");
             }
             else if(input.matches("[0-9a-fA-F]=[!|~|-]([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])")) {
-                //Load  a=7 loads 7 to register a (up to 255)
-                String reg = input.split("=")[0]
+                String reg = input.split("=")[0];
                 String num = Integer.toHexString(Integer.parseInt(input.split("=")[1].substring(2)));
                 writeBytecode("01" + reg + num + "0");
                 String func = input.split("=")[1].substring(1,2);
