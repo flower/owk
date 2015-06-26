@@ -41,6 +41,28 @@ f=f*e;g1
 #The number after g is written in hex
 ```
 
+Negative numbers can be inputed like normal ones.
+
+```python
+#Negative 2
+f=-2
+#NOT 2
+e=!2
+#Two's complement 2
+d=~2
+```
+
+You can also negate registers.
+
+```python
+#Negative c
+f=-c
+#NOT c
+e=!c
+#Two's complement c
+d=~c
+```
+
 ##Lambdas
 Lambdas are a special part of Owk, and how functions are written. Then are notated in [Lambda Calculus](https://en.m.wikipedia.org/wiki/Lambda_calculus), which is different than your normal `(x) -> x`.
 
