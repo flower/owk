@@ -102,9 +102,9 @@ public class Owk {
                     writeBytecode(mathOperators.get("-") + reg + reg + "00");
                 }
             }
-            else if(input.matches("[0-9a-fA-F]=["']\w["']")) {
+            else if(input.matches("[0-9a-fA-F]='\w'")) {
                 String reg = input.split("=")[0];
-                char c = (char) input.split("=")[1].replace("["']", "");
+                char c = (char) input.split("=")[1].replace("'", "");
                 writeBytecode("01" + reg + ((int)c) + "0");
             }
             else if(input.matches("[0-9a-fA-F]=([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])")) {
