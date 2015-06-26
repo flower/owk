@@ -30,7 +30,7 @@ f=2*d
 1 = 8 % 6
 ```
 
-The available functions are add `+`, subtract `-`, multiply `*`, divide `/`, mod `%`, AND `&`, OR `|`, XOR `^`, left shift `{`, and right shift `}`.
+The available functions are add `+`, subtract `-`, multiply `*`, divide `/`, mod `%`, AND `&`, OR `|`, XOR `^`, left shift `<`, and right shift `>`.
 
 Since Owk is parsed line by line, you can use the `g` operator to go to a specific line.
 
@@ -39,4 +39,41 @@ Since Owk is parsed line by line, you can use the `g` operator to go to a specif
 f=8;e=6
 f=f*e;g1
 #The number after g is written in hex
+```
+
+##Lambdas
+Lambdas are a special part of Owk, and how functions are written. Then are notated in [Lambda Calculus](https://en.m.wikipedia.org/wiki/Lambda_calculus), which is different than your normal `(x) -> x`.
+
+```python
+square:λx.x*x
+add:λx.λy.x+y
+```
+
+Each lambda begins with a name, followed by a `:` and the function code. Each `λ` notates a varaible use by the lambda, followed by a `.` and more variables or the function code. Here's a side by side example of a Java method and an Owk lambda:
+
+```java
+int add(int x, int y) {
+    return x + y;
+}
+```
+```python
+add:λx.λy.x+y
+```
+
+And a more complicated one:
+
+```java
+int math(int x, int y) {
+    return x * x + y * y;
+}
+```
+
+```python
+math:λx.λy.x*x+y*y;
+```
+
+To use these lambdas, we need to assign the output to a register. It's inputs will be in parentheses.
+
+```python
+f=math(e,d)
 ```
