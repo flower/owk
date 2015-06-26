@@ -84,6 +84,11 @@ public class Owk {
                     writeBytecode(mathOperators.get("-") + reg + reg + "00");
                 }
             }
+            else if(input.matches("[0-9a-fA-F]=["']\w["']")) {
+                String reg = input.split("=")[0];
+                char c = (char) input.split("=")[1].replace("["']", "");
+                writeBytecode("01" + reg + ((int)c) + "0");
+            }
             else if(input.matches("[0-9a-fA-F]=([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])")) {
                 String reg input.split("=")[0];
                 String num = Integer.toHexString(Integer.parseInt(input.split("=")[1]));
@@ -96,9 +101,9 @@ public class Owk {
                 String func = input.split("=")[1].substring(1,2);
                 writeBytecode(mathOperators.get(func) + reg + reg + "00");
             }
-            else if(input.matches("[0-9a-fA-F]<[0-9a-fA-F][+|-|*|/|%|&|\\||^|>|<][0-9a-fA-F]")) {
-                String reg1 = input.split("<")[1].split("[+|-|*|/|%|&|\\||^|>|<]")[0];
-                String reg2 = input.split("<")[1].split("[+|-|*|/|%|&|\\||^|>|<]")[1];
+            else if(input.matches("[0-9a-fA-F]<[0-9a-fA-F][+-*/%&|^><][0-9a-fA-F]")) {
+                String reg1 = input.split("<")[1].split("[+-*/%&|^><]")[0];
+                String reg2 = input.split("<")[1].split("[+-*/%&|^><]")[1];
                 String reg3 = input.split("<")[0];
                 String func = input.split(reg2)[0].split(reg1)[1];
                 writeBytecode(mathOperators.get(func) + reg1 + reg2 + reg3 + "0");
