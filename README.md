@@ -32,6 +32,13 @@ f=2*d
 
 The available functions are add `+`, subtract `-`, multiply `*`, divide `/`, mod `%`, AND `&`, OR `|`, XOR `^`, left shift `<`, and right shift `>`.
 
+You can also do math expressions if you wrap it around `()`. It gets parsed by a JavaScript engine, so you can use things like `Math.pow()`. The answer of the expression can't be over **`255`**, so be careful!
+
+```python
+f=(2*3+4)
+e=(Math.pow(2,3) + 7)
+```
+
 Since Owk is parsed line by line, you can use the `g` operator to go to a specific line.
 
 ```python
