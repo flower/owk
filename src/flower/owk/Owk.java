@@ -61,10 +61,10 @@ public class Owk {
                 String num = Integer.toHexString(Integer.parseInt(input.split("=")[1]));
                 writeBytecode("01" + reg + num + "0");
             }
-            else if(input.matches("[0-9a-fA-F][+|-|*|/|%|&|\\||^|}|{][0-9a-fA-F]>[0-9a-fA-F]")) {
-                String reg1 = input.split(">")[0].split("+")[0];
-                String reg2 = input.split(">")[0].split("+")[1];
-                String reg3 = input.split(">")[1];
+            else if(input.matches("[0-9a-fA-F]=[0-9a-fA-F][+|-|*|/|%|&|\\||^|>|<][0-9a-fA-F]")) {
+                String reg1 = input.split("=")[1].split("[+|-|*|/|%|&|\\||^|>|<]")[0];
+                String reg2 = input.split("=")[1].split("[+|-|*|/|%|&|\\||^|>|<]")[1];
+                String reg3 = input.split("=")[0];
                 String func = input.split(reg2)[0].split(reg1)[1];
                 writeBytecode(mathOperators.get(func) + reg1 + reg2 + reg3 + "0");
             }
