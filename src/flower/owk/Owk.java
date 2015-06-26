@@ -76,6 +76,12 @@ public class Owk {
             else if(input.contains("λ") {
                 new Lambda(input);
             }
+            else if(input.matches("g[0-9a-fA-F]+")) {
+                writeBytecode("03" + input.replace("g", "") + "00");
+            }
+            else if(input.matches("p[0-9a-fA-F]")) {
+                writeBytecode("13" + input.replace("p", "") + "00");
+            }
             else if(input.matches("[0-9a-fA-F]=\\w+\\([0-9a-fA-F,]+\\)")) {
                 String store = input.split("=")[0];
                 String lambda = input.split("=")[1].split("(")[0];
