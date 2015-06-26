@@ -18,6 +18,9 @@ public class Owk {
         put("^", "0B");
         put("}", "0D");
         put("{", "0E");
+        put("!", "0C");
+        put("-", "17");
+        put("~", "18");
     }};
 
     public static void main(String[] args) {
@@ -55,6 +58,9 @@ public class Owk {
                 //Comment
                 return;
             }
+            else if(input.contains("#") {
+                input = input.split("#")[0];
+            }
             else if(input.matches("[0-9a-fA-F]=([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])")) {
                 //Load  a=7 loads 7 to register a (up to 255)
                 String reg = input.split("=")[0]
@@ -67,6 +73,12 @@ public class Owk {
                 String reg3 = input.split("=")[0];
                 String func = input.split(reg2)[0].split(reg1)[1];
                 writeBytecode(mathOperators.get(func) + reg1 + reg2 + reg3 + "0");
+            }
+            else if(input.mathces("[0-9a-fA-F]=[!|~|-][0-9a-fA-F]") {
+                String func = input.split("=")[1].substring(1,2);
+                String reg1 = input.split("=")[0];
+                String reg2 = input.split("=")[1].substring(2);
+                writeBytecode(mathOperators.get(func) + reg1 + reg2 + "00");
             }
         } catch (Exception e) {
             e.printStackTrace();
