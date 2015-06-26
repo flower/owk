@@ -96,18 +96,23 @@ public class Owk {
                 String func = input.split("=")[1].substring(1,2);
                 writeBytecode(mathOperators.get(func) + reg + reg + "00");
             }
-            else if(input.matches("[0-9a-fA-F]=[0-9a-fA-F][+|-|*|/|%|&|\\||^|>|<][0-9a-fA-F]")) {
-                String reg1 = input.split("=")[1].split("[+|-|*|/|%|&|\\||^|>|<]")[0];
-                String reg2 = input.split("=")[1].split("[+|-|*|/|%|&|\\||^|>|<]")[1];
-                String reg3 = input.split("=")[0];
+            else if(input.matches("[0-9a-fA-F]<[0-9a-fA-F][+|-|*|/|%|&|\\||^|>|<][0-9a-fA-F]")) {
+                String reg1 = input.split("<")[1].split("[+|-|*|/|%|&|\\||^|>|<]")[0];
+                String reg2 = input.split("<")[1].split("[+|-|*|/|%|&|\\||^|>|<]")[1];
+                String reg3 = input.split("<")[0];
                 String func = input.split(reg2)[0].split(reg1)[1];
                 writeBytecode(mathOperators.get(func) + reg1 + reg2 + reg3 + "0");
             }
-            else if(input.mathces("[0-9a-fA-F]=[!|~|-][0-9a-fA-F]") {
-                String func = input.split("=")[1].substring(1,2);
-                String reg1 = input.split("=")[0];
-                String reg2 = input.split("=")[1].substring(2);
+            else if(input.mathces("[0-9a-fA-F]<[!|~|-][0-9a-fA-F]") {
+                String func = input.split("<")[1].substring(1,2);
+                String reg1 = input.split("<")[0];
+                String reg2 = input.split("<")[1].substring(2);
                 writeBytecode(mathOperators.get(func) + reg1 + reg2 + "00");
+            }
+            else if(input.mathces("[0-9a-fA-F]<[0-9a-fA-F]") {
+                String reg1 = input.split("<")[0];
+                String reg2 = input.split("<")[1];
+                writeBytecode("14" + reg1 + reg1 + "00");
             }
         } catch (Exception e) {
             e.printStackTrace();
