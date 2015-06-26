@@ -23,11 +23,11 @@ You can also do your normal math operations in Owk using the registers.
 
 ```python
 #Adds the values of registers a & f and stores it in register e
-a+f>e
+e=a+f
 #Multiplies the values of registers 2 & d and stores it in register f
-2*d>f
+f=2*d
 #Mods the values of registers 8 & 6 and stores it in register 1
-8 % 6 > 1
+1 = 8 % 6
 ```
 
 The available functions are add `+`, subtract `-`, multiply `*`, divide `/`, mod `%`, AND `&`, OR `|`, XOR `^`, left shift `{`, and right shift `}`.
@@ -36,7 +36,7 @@ Since Owk is parsed line by line, you can use the `g` operator to go to a specif
 
 ```python
 #Infinite Loop
-f=8;e=6;
-f*e>f;g1
+f=8;e=6
+f=f*e;g1
 #The number after g is written in hex
 ```
