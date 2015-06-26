@@ -6,7 +6,7 @@ import javax.script.*;
 
 public class Owk {
 
-    public String file = "console.owk";
+    public String file = "console.pot";
     public ScriptEngine engine;
     private PrintWriter writer = new PrintWriter(file, "UTF-8");
     public HashMap<String, String> mathOperators = new HashMap<String, String>(){{
@@ -32,9 +32,9 @@ public class Owk {
         owk.engine = engine;
 
         if(args.length > 0) {
-            owk.file = args[0];
+            owk.file = args[0].contains(".") ? args[0].split(".")[0] + ".pot" : args[0] + ".pot";
             owk.writer = new PrintWriter(owk.file, "UTF-8");
-            File file = new File(args[0]);
+            File file = new File(owk.file);
             BufferedReader br = new BufferedReader(new FileReader(file));
             try {
                 for(String line; (line = br.readLine()) != null;) {
