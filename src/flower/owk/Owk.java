@@ -67,6 +67,14 @@ public class Owk {
                 String num = Integer.toHexString(Integer.parseInt(input.split("=")[1]));
                 writeBytecode("01" + reg + num + "0");
             }
+            else if(input.matches("[0-9a-fA-F]=[!|~|-]([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])")) {
+                //Load  a=7 loads 7 to register a (up to 255)
+                String reg = input.split("=")[0]
+                String num = Integer.toHexString(Integer.parseInt(input.split("=")[1].substring(2)));
+                writeBytecode("01" + reg + num + "0");
+                String func = input.split("=")[1].substring(1,2);
+                writeBytecode(mathOperators.get(func) + reg + reg + "00");
+            }
             else if(input.matches("[0-9a-fA-F]=[0-9a-fA-F][+|-|*|/|%|&|\\||^|>|<][0-9a-fA-F]")) {
                 String reg1 = input.split("=")[1].split("[+|-|*|/|%|&|\\||^|>|<]")[0];
                 String reg2 = input.split("=")[1].split("[+|-|*|/|%|&|\\||^|>|<]")[1];
