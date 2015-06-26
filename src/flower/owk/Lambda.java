@@ -28,7 +28,7 @@ public class Lambda {
         lambdas.add(this);
     }
 
-    public int call(String store, String... regs) {
+    public void call(String store, String... regs) {
         if(regs.length != variables.length) {
             throw new IllegalArgumentException();
             return;
@@ -36,6 +36,18 @@ public class Lambda {
         String c = code;
         for(int i = 0; i < variables.length; i++) {
             c = c.replace(variables[i], regs[i]);
+        }
+        if(c.matches("([0-9a-fA-F]+[+-/*]?)*") {
+            //Not PEMDAS
+            for(int i = 1; i < c.length(); i+=2) {
+                String ex = c.substring(i, i+3);
+                if(ex.matches("[0-9a-fA-F][+-*/%&|^><][0-9a-fA-F]") {
+                    String r1 = ex.split("[+-*/%&|^><]")[0];
+                    String r2 = ex.split("[+-*/%&|^><]")[1];
+                    String func = ex.replace(r1, "").replace(r2, "");
+                    Owk.getInstance().writeBytecode(Owk.getInstance().mathOperators.get(func) + r1 + r2 + "00");
+                }
+            }
         }
     }
 
