@@ -67,6 +67,18 @@ public class Owk {
             else if(input.contains("#") {
                 input = input.split("#")[0];
             }
+            else if(input.contains("λ") {
+                new Lambda(input);
+            }
+            else if(input.matches("[0-9a-fA-F]=\\w+\\([0-9a-fA-F,]+\\)")) {
+                String store = input.split("=")[0];
+                String lambda = input.split("=")[1].split("(")[0];
+                String[] regs = input.split("=")[1].split("(")[1].split(")")[0].split(",");
+                for(Lambda l : Lambda.lambdas) {
+                    if(l.name.equals(lambda)
+                        l.call(store, regs);
+                }
+            }
             else if(input.matches("[0-9a-fA-F]=\\([0-9()+\-*/.]+\\)")) {
                 String reg = input.split("=")[0]
                 String ex = input.split("=")[1];
