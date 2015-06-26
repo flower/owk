@@ -24,11 +24,13 @@ public class Owk {
         put("-", "17");
         put("~", "18");
     }};
+    private static Owk instance;
 
     public static void main(String[] args) {
         ScriptEngineManager mgr = new ScriptEngineManager();
         ScriptEngine engine = mgr.getEngineByName("JavaScript");
         Owk owk = new Owk();
+        Owk.instance = owk;
         owk.engine = engine;
 
         if(args.length > 0) {
@@ -48,6 +50,10 @@ public class Owk {
             String input = console.readLine(">> ");
             owk.processCommand(input);
         }
+    }
+
+    public static Owk getInstance() {
+        return instance;
     }
 
     public void processCommand(String input) {
