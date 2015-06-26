@@ -26,6 +26,13 @@ To load characters, you use `''`. This will load the ASCII value of the characte
 2='e'
 3='l'
 4='l'
+5='o'
+6=' '
+7='W'
+8='o'
+9='r'
+a='l'
+b='d'
 ```
 
 You can also do your normal math operations in Owk using the registers.
